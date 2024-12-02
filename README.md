@@ -61,7 +61,7 @@ Follow these steps to set up the project locally:
 
   **The T5 model used in this project is fine-tuned for text summarization. Fine-tuning is done using the Hugging Face transformers library along with PyTorch Lightning.** 
     
-    Steps for Fine-Tuning:
+   Steps for Fine-Tuning:
 
       Prepare Dataset: We use a summarization dataset (e.g., CNN/Daily Mail) to fine-tune the model.
       Train the Model: The T5 Small model is fine-tuned using PyTorch Lightning for efficient model training.
@@ -72,17 +72,20 @@ Follow these steps to set up the project locally:
    **The trained model is saved to and loaded from an S3 bucket, enabling scalable model storage and retrieval. This setup is ideal for deploying models in production environments.** 
    Saving the Model to S3:
 
-    After fine-tuning, the model is saved to the S3 bucket:
-    ```bash
+   After fine-tuning, the model is saved to the S3 bucket:
+    ```
     import boto3 import torch
     def save_model_to_s3(model, model_name, bucket_name): s3 = boto3.client('s3') model.save_pretrained(model_name) s3.upload_file(model_name, bucket_name, model_name)
+    ```
     
     
    Loading the Model from S3:
 
-    When the Flask app runs, it loads the model from the S3 bucket for inference:
+   When the Flask app runs, it loads the model from the S3 bucket for inference:
 
-      ```def load_model_from_s3(model_name, bucket_name): s3 = boto3.client('s3') s3.download_file(bucket_name, model_name, model_name) model = T5ForConditionalGeneration.from_pretrained(model_name) return model```
+   ```
+     def load_model_from_s3(model_name, bucket_name): s3 = boto3.client('s3') s3.download_file(bucket_name, model_name, model_name) model = T5ForConditionalGeneration.from_pretrained(model_name) return model
+   ```
 
 ## Dependencies
 
