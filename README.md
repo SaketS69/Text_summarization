@@ -41,12 +41,11 @@ Follow these steps to set up the project locally:
 ## Running the Application
 
    **Start the Flask Application: After installing dependencies, start the Flask app by running:**
-      ```bash
-      python app.py
+      ```python app.py```
 
-    
-
-    The Flask app will be available at http://127.0.0.1:5000. Open this URL in your browser.
+   The Flask app will be available at 
+    ```http://127.0.0.1:5000.```
+    Open this URL in your browser.
 
 ## Web Interface Home Page
 
